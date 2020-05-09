@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="MiniTC.View.PanelTC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MiniTC.View"
+             xmlns:resx="clr-namespace:MiniTC.Properties"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Source={x:Static resx:Resources.Path}}" Margin="10,10,10,5"
+                      TextAlignment="Justify" Grid.Row="0"/>
+        <TextBox x:Name="PathBox" x:FieldModifier="private" Grid.Row="0"
+                 TextChanged="Path_TextChanged"
+                 Text="{
+                        Binding Path=Path,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
+
+
+        <TextBlock Text="{Binding Source={x:Static resx:Resources.Drive}}" Margin="10,10,10,5"
+                      TextAlignment="Justify" Grid.Row="1"/>
+        <TextBox x:Name="DriveBox" x:FieldModifier="private" Grid.Row="1"
+                 TextChanged="Drive_TextChanged"
+                 Text="{
+                        Binding Path=Drive,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
+
+       
+        <ListBox x:Name="ContentsList" x:FieldModifier="private" Grid.Row="2"
+                SelectionChanged="Contents_SelectionChanged"
+                 ItemsSource="{
+                        Binding Path=Contents,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }" />
+
+    </Grid>
+</UserControl>
