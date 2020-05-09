@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Menu.ViewModel
+namespace MiniTC.ViewModel.Base
 {
     public class BaseViewModel : INotifyPropertyChanged
     {

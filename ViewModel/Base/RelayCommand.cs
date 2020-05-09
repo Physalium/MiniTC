@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Menu.ViewModel
+namespace MiniTC.ViewModel.Base
 {
     public class RelayCommand : ICommand
     {
