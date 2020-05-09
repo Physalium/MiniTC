@@ -17,7 +17,9 @@ namespace MiniTC.ViewModel
         public string Path
         {
             get { return path; }
-            set { path = value; }
+            set { path = value;
+                onPropertyChanged(nameof(Path));
+            }
         }
 
         private string drive;
@@ -25,7 +27,9 @@ namespace MiniTC.ViewModel
         public string Drive
         {
             get { return drive; }
-            set { drive = value; }
+            set { drive = value;
+                onPropertyChanged(nameof(Drive));
+            }
         }
 
         private BindingList<String> contents;
@@ -33,9 +37,21 @@ namespace MiniTC.ViewModel
         public BindingList<String> Contents
         {
             get { return contents; }
-            set { contents = value; }
+            set { contents = value;
+                onPropertyChanged(nameof(Contents));
+            }
         }
+        private String selectedItem;
 
+        public String SelectedItem
+        {
+            get { return selectedItem; }
+            set
+            {
+                selectedItem = value;
+                onPropertyChanged(nameof(SelectedItem));
+            }
+        }
 
         #endregion
 
