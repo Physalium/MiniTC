@@ -55,8 +55,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Commands\Copy.cs" />
+    <Compile Include="Model\Commands\ICommand.cs" />
+    <Compile Include="Model\MiniTC.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
-    <Compile Include="ViewModel\PanelTCViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\TCPanelViewModel.cs" />
     <Compile Include="View\PanelTC.xaml.cs">
       <DependentUpon>PanelTC.xaml</DependentUpon>
     </Compile>

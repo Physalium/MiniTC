@@ -24,12 +24,15 @@ namespace MiniTC.View
         public PanelTC()
         {
             InitializeComponent();
+
         }
         #region Events
 
+
+
         #region Path
         public static readonly RoutedEvent PathChangedEvent =
-        EventManager.RegisterRoutedEvent("TabItemSelected",
+        EventManager.RegisterRoutedEvent("PathChanged",
                      RoutingStrategy.Bubble, typeof(RoutedEventHandler),
                      typeof(PanelTC));
 
@@ -56,7 +59,7 @@ namespace MiniTC.View
         #endregion
         #region Drive
         public static readonly RoutedEvent DriveChangedEvent =
-        EventManager.RegisterRoutedEvent("TabItemSelected",
+        EventManager.RegisterRoutedEvent("DriveChanged",
                      RoutingStrategy.Bubble, typeof(RoutedEventHandler),
                      typeof(PanelTC));
 
@@ -80,9 +83,10 @@ namespace MiniTC.View
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
-        #region Contents
+        #region FileTree
+        #region FileSelection
         public static readonly RoutedEvent FileSelectionChangedEvent =
-       EventManager.RegisterRoutedEvent("TabItemSelected",
+       EventManager.RegisterRoutedEvent("FileSelectionChanged",
                     RoutingStrategy.Bubble, typeof(RoutedEventHandler),
                     typeof(PanelTC));
 
@@ -101,11 +105,48 @@ namespace MiniTC.View
 
         public static readonly DependencyProperty FileSelectionProperty =
             DependencyProperty.Register(
-                "",
+                "SelectedFile",
                 typeof(string),
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
+        #endregion
+        #region Contents
+        public static readonly RoutedEvent ContentsChangedEvent =
+      EventManager.RegisterRoutedEvent("ContentsChanged",
+                   RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                   typeof(PanelTC));
+
+        public event RoutedEventHandler ContentsChanged
+        {
+            add { AddHandler(ContentsChangedEvent, value); }
+            remove { RemoveHandler(ContentsChangedEvent, value); }
+        }
+
+        private void RaiseContentsChanged()
+        {
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(ContentsChangedEvent);
+            RaiseEvent(newEventArgs);
+        }
+
+        public static readonly DependencyProperty ContentsProperty =
+            DependencyProperty.Register(
+                "Contents",
+                typeof(string),
+                typeof(PanelTC),
+                new FrameworkPropertyMetadata(null)
+            );
+        #endregion
+        #endregion
+        #region Labels
+        protected static readonly DependencyProperty PathLabelProperty =
+            DependencyProperty.Register("PathLabel", typeof(string), typeof(PanelTC));
+        protected static readonly DependencyProperty DriveLabelProperty =
+            DependencyProperty.Register("DriveLabel", typeof(string), typeof(PanelTC));
+
+
+
         #endregion
         #endregion
         #endregion
@@ -115,9 +156,34 @@ namespace MiniTC.View
             get { return (string)GetValue(PathProperty); }
             set { SetValue(PathProperty, value); }
         }
+        public string Drive
+        {
+            get { return (string)GetValue(DriveProperty); }
+            set { SetValue(DriveProperty, value); }
+        }
+        public string SelectedFile
+        {
+            get { return (string)GetValue(FileSelectionProperty); }
+            set { SetValue(FileSelectionProperty, value); }
+        }
+        public string Contents
+        {
+            get { return (string)GetValue(ContentsProperty); }
+            set { SetValue(ContentsProperty, value); }
+        }
 
+        public string PathLabel
+        {
+            get { return (string)GetValue(PathLabelProperty); }
+            set { SetValue(PathLabelProperty, value); }
+        }
+        public string DriveLabel
+        {
+            get { return (string)GetValue(DriveLabelProperty); }
+            set { SetValue(DriveLabelProperty, value); }
+        }
         #endregion
-
+        
         #region Internal event handlers
 
         private void Path_TextChanged(object sender, TextChangedEventArgs e)
@@ -132,10 +198,11 @@ namespace MiniTC.View
 
         private void Contents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RaiseFileSelectionChanged();
+            RaiseContentsChanged();
         }
         #endregion
+       
 
-     
+
     }
 }

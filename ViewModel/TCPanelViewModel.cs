@@ -4,13 +4,15 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MiniTC.Properties;
 using MiniTC.ViewModel.Base;
 
 namespace MiniTC.ViewModel
 {
-
-    class TCPanelViewModel : BaseViewModel
+    using R = Properties.Resources;
+    internal class TCPanelViewModel : BaseViewModel
     {
+        
         #region Properties
         private string path;
 
@@ -52,9 +54,37 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(SelectedItem));
             }
         }
+        #region Labels
+        private String pathLabel;
 
+        public String PathLabel
+        {
+            get { return pathLabel; }
+            set
+            {
+                pathLabel = value;
+            }
+        }
+        private String driveLabel;
+
+        public String DriveLabel
+        {
+            get { return driveLabel; }
+            set
+            {
+                driveLabel = value;
+            }
+        }
         #endregion
 
+        #endregion
+        #region Constructor
+        internal TCPanelViewModel()
+        {
+            DriveLabel = R.DriveLabel;
+            PathLabel = R.PathLabel;
+        }
+        #endregion
 
     }
 }

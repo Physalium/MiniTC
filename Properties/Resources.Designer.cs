@@ -63,18 +63,18 @@ namespace MiniTC.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Drive:.
         /// </summary>
-        internal static string Drive {
+        internal static string DriveLabel {
             get {
-                return ResourceManager.GetString("Drive", resourceCulture);
+                return ResourceManager.GetString("DriveLabel", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Path:.
         /// </summary>
-        internal static string Path {
+        internal static string PathLabel {
             get {
-                return ResourceManager.GetString("Path", resourceCulture);
+                return ResourceManager.GetString("PathLabel", resourceCulture);
             }
         }
     }

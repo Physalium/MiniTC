@@ -8,16 +8,32 @@ using MiniTC.ViewModel.Base;
 
 namespace MiniTC.ViewModel
 {
-    class MainViewModel : BaseViewModel
+    internal class MainViewModel : BaseViewModel
     {
         #region Properties
         private readonly Model.MiniTC miniTC = new Model.MiniTC();
 
-        private TCPanelViewModel leftPanel;
-        private TCPanelViewModel rightPanel;
+        private TCPanelViewModel leftPanel = new TCPanelViewModel();
+        private TCPanelViewModel rightPanel = new TCPanelViewModel();
 
-        internal TCPanelViewModel LeftPanel { get => leftPanel; set => leftPanel = value; }
-        internal TCPanelViewModel RightPanel { get => rightPanel; set => rightPanel = value; }
+        public TCPanelViewModel LeftPanel
+        {
+            get { return leftPanel; }
+            set
+            {
+                leftPanel = value;
+                onPropertyChanged(nameof(LeftPanel));
+            }
+        }
+        public TCPanelViewModel RightPanel
+        {
+            get { return rightPanel; }
+            set
+            {
+                rightPanel = value;
+                onPropertyChanged(nameof(RightPanel));
+            }
+        }
 
 
         #endregion
