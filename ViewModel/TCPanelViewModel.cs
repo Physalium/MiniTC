@@ -12,25 +12,38 @@ namespace MiniTC.ViewModel
     using R = Properties.Resources;
     internal class TCPanelViewModel : BaseViewModel
     {
-        
+        private readonly Model.MiniTC miniTC;
         #region Properties
         private string path;
 
         public string Path
         {
             get { return path; }
-            set { path = value;
+            set
+            {
+                path = value;
                 onPropertyChanged(nameof(Path));
             }
         }
 
-        private string drive;
+        private string selectedDrive;
 
-        public string Drive
+        public string SelectedDrive
         {
-            get { return drive; }
-            set { drive = value;
-                onPropertyChanged(nameof(Drive));
+            get { return selectedDrive; }
+            set { selectedDrive = value; }
+        }
+
+
+        private BindingList<String> drives;
+
+        public BindingList<String> Drives
+        {
+            get { return drives; }
+            set
+            {
+                drives = value;
+                onPropertyChanged(nameof(Drives));
             }
         }
 
@@ -39,7 +52,9 @@ namespace MiniTC.ViewModel
         public BindingList<String> Contents
         {
             get { return contents; }
-            set { contents = value;
+            set
+            {
+                contents = value;
                 onPropertyChanged(nameof(Contents));
             }
         }
@@ -79,10 +94,12 @@ namespace MiniTC.ViewModel
 
         #endregion
         #region Constructor
-        internal TCPanelViewModel()
+        internal TCPanelViewModel(Model.MiniTC modelInstance)
         {
+            miniTC = modelInstance;
             DriveLabel = R.DriveLabel;
             PathLabel = R.PathLabel;
+            Drives = new BindingList<string>(miniTC.GetDrives());
         }
         #endregion
 

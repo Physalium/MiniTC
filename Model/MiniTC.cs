@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.IO;
+using System.Windows.Documents;
 using MiniTC.Model.Commands;
 
 namespace MiniTC.Model
 {
     internal class MiniTC
     {
+        #region Operations on files
         public List<ICommand> Commands;
 
         public void AddCommand(ICommand command)
@@ -31,5 +33,22 @@ namespace MiniTC.Model
         {
             return command.Execute(sourcePath, targetPath);
         }
+        #endregion
+
+        #region IO Methods
+        public string[] GetDrives()
+        {
+            return Directory.GetLogicalDrives();
+        }
+
+        public string[] GetDirectories(string path)
+        {
+            return Directory.GetDirectories(path);
+        }
+        public string[] GetFiles(string path)
+        {
+            return Directory.GetFiles(path);
+        }
+        #endregion
     }
 }

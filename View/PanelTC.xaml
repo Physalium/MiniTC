@@ -12,11 +12,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" >
-            <TextBlock x:Name="pathLabel" x:FieldModifier="private" Width="50" FontSize="10"
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+            <TextBlock x:Name="pathLabel" x:FieldModifier="private" Width="50" FontSize="13" Height="20"
+                       Margin="10,10,0,10"
+                      TextAlignment="Justify" 
                  Text="{
                         Binding Path=PathLabel,
                         Mode=TwoWay,
@@ -25,11 +27,12 @@
                                         RelativeSource Mode=FindAncestor,
                                         AncestorType={x:Type UserControl}
                                        }
-                     }"  Margin="10,10,10,5"
-                      TextAlignment="Justify" />
+                     }"  />
 
-            <TextBox x:Name="pathBox" x:FieldModifier="private"
-                 TextChanged="Path_TextChanged" Text="{
+            <TextBox x:Name="pathBox" x:FieldModifier="private" TextChanged="Path_TextChanged" 
+                     Height="20" FontSize="13" Width="170" BorderThickness="1" BorderBrush="Black"
+                     Margin="10,10,10,10"
+                     Text="{
                         Binding Path=Path,
                         Mode=TwoWay,
                         UpdateSourceTrigger=PropertyChanged,
@@ -40,8 +43,10 @@
                      }"/>
 
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <TextBlock x:Name="driveLabel" x:FieldModifier="private" Width="50" FontSize="10"
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock x:Name="driveLabel" x:FieldModifier="private" Width="50" Height="20" FontSize="13"
+                       Margin="10,10,0,10"
+                      TextAlignment="Justify"
                  Text="{
                         Binding Path=DriveLabel,
                         Mode=TwoWay,
@@ -50,13 +55,22 @@
                                         RelativeSource Mode=FindAncestor,
                                         AncestorType={x:Type UserControl}
                                        }
-                     }"  Margin="10,10,10,5"
-                      TextAlignment="Justify"/>
+                     }"  />
             
-        <TextBox x:Name="driveBox" x:FieldModifier="private" Width="50" 
-                 TextChanged="Drive_TextChanged"
-                 Text="{
-                        Binding Path=Drive,
+        <ComboBox x:Name="driveBox" x:FieldModifier="private"
+                 SelectionChanged="driveBox_SelectionChanged"
+                 Height="20" FontSize="13" Width="50" BorderThickness="1" BorderBrush="Black"
+                 Margin="10,10,10,10"
+                  SelectedItem="{Binding Path=SelectedDrive,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }"
+                 ItemsSource="{
+                        Binding Path=Drives,
                         Mode=TwoWay,
                         UpdateSourceTrigger=PropertyChanged,
                         RelativeSource={
@@ -67,6 +81,15 @@
         </StackPanel>
         <ListBox x:Name="contentsList" x:FieldModifier="private" Grid.Row="2"
                 SelectionChanged="Contents_SelectionChanged"
+                 Margin="15,20,15,15"
+                 SelectedItem="{Binding Path=SelectedContent,
+                        Mode=TwoWay,
+                        UpdateSourceTrigger=PropertyChanged,
+                        RelativeSource={
+                                        RelativeSource Mode=FindAncestor,
+                                        AncestorType={x:Type UserControl}
+                                       }
+                     }"
                  ItemsSource="{
                         Binding Path=Contents,
                         Mode=TwoWay,

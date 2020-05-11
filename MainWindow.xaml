@@ -8,8 +8,8 @@
         xmlns:vm="clr-namespace:MiniTC.ViewModel"
         xmlns:view="clr-namespace:MiniTC.View"
         mc:Ignorable="d"
-        Title="MiniTC" Height="450" Width="800"
-        Background="DimGray">
+        Title="MiniTC" Height="600" Width="800"
+        Background="LightGray">
 
 
     <Grid>
@@ -19,8 +19,12 @@
         </Grid.ColumnDefinitions>
 
         <view:PanelTC x:Name="leftPanel" DriveLabel="{Binding Path=LeftPanel.DriveLabel,Mode=TwoWay}"
+                       PathLabel="{Binding Path=LeftPanel.PathLabel, Mode=TwoWay}"
+                      Drives="{Binding Path=LeftPanel.Drives,Mode=TwoWay}"
                        Grid.Column="0"/>
         <view:PanelTC x:Name="rightPanel" PathLabel="{Binding Path=RightPanel.PathLabel, Mode=TwoWay}"
+                      DriveLabel="{Binding Path=RightPanel.DriveLabel,Mode=TwoWay}"
+                      Drives="{Binding Path=LeftPanel.Drives,Mode=TwoWay}"
                       Grid.Column="1"/>
 
     </Grid>

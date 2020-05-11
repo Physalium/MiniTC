@@ -11,28 +11,20 @@ namespace MiniTC.ViewModel
     internal class MainViewModel : BaseViewModel
     {
         #region Properties
-        private readonly Model.MiniTC miniTC = new Model.MiniTC();
+        private static readonly Model.MiniTC miniTC = new Model.MiniTC();
 
-        private TCPanelViewModel leftPanel = new TCPanelViewModel();
-        private TCPanelViewModel rightPanel = new TCPanelViewModel();
+        private TCPanelViewModel leftPanel = new TCPanelViewModel(miniTC);
+        private TCPanelViewModel rightPanel = new TCPanelViewModel(miniTC);
 
         public TCPanelViewModel LeftPanel
         {
             get { return leftPanel; }
-            set
-            {
-                leftPanel = value;
-                onPropertyChanged(nameof(LeftPanel));
-            }
+
         }
         public TCPanelViewModel RightPanel
         {
             get { return rightPanel; }
-            set
-            {
-                rightPanel = value;
-                onPropertyChanged(nameof(RightPanel));
-            }
+
         }
 
 
