@@ -5,14 +5,14 @@ namespace MiniTC.ViewModel.Base
 {
     public class RelayCommand : ICommand
     {
-        #region Prywatne pola
+        #region Private fields
 
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
         #endregion
 
-        #region Konstruktor
+        #region Constructor
 
         public RelayCommand(Action<object> execute, Predicate<object> canExecute = null)
         {
@@ -23,7 +23,7 @@ namespace MiniTC.ViewModel.Base
 
         #endregion
 
-        #region Składowe ICommand
+        #region Contents
 
         public bool CanExecute(object parameter)
         {

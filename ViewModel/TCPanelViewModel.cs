@@ -6,13 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using MiniTC.Properties;
 using MiniTC.ViewModel.Base;
+using MiniTC.ViewModel.FileInfo;
 
 namespace MiniTC.ViewModel
 {
     using R = Properties.Resources;
     internal class TCPanelViewModel : BaseViewModel
     {
-        private readonly Model.MiniTC miniTC;
+        private readonly Model.FileTreeService fileTreeService;
         #region Properties
         private string path;
 
@@ -31,7 +32,9 @@ namespace MiniTC.ViewModel
         public string SelectedDrive
         {
             get { return selectedDrive; }
-            set { selectedDrive = value; }
+            set { selectedDrive = value;
+                onPropertyChanged(nameof(SelectedDrive));
+            }
         }
 
 
@@ -47,9 +50,9 @@ namespace MiniTC.ViewModel
             }
         }
 
-        private BindingList<String> contents;
+        private BindingList<ListItemBase> contents;
 
-        public BindingList<String> Contents
+        public BindingList<ListItemBase> Contents
         {
             get { return contents; }
             set
@@ -58,9 +61,9 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(Contents));
             }
         }
-        private String selectedItem;
+        private ListItemBase selectedItem;
 
-        public String SelectedItem
+        public ListItemBase SelectedItem
         {
             get { return selectedItem; }
             set
@@ -94,12 +97,32 @@ namespace MiniTC.ViewModel
 
         #endregion
         #region Constructor
-        internal TCPanelViewModel(Model.MiniTC modelInstance)
+        internal TCPanelViewModel(Model.FileTreeService modelInstance)
         {
-            miniTC = modelInstance;
+            fileTreeService = modelInstance;
             DriveLabel = R.DriveLabel;
             PathLabel = R.PathLabel;
-            Drives = new BindingList<string>(miniTC.GetDrives());
+            Drives = new BindingList<string>(fileTreeService.GetDrives());
+            RefreshPanel(Drives[0]);
+        }
+        #endregion
+
+        #region Methods
+        public void RefreshPanel(string currentPath)
+        {
+            SelectedDrive = Drives[0]; // do implementacji
+            Path = currentPath;
+            Contents = BuildFileTree();
+        }
+
+        public BindingList<ListItemBase> BuildFileTree()
+        {
+            var temp = new BindingList<ListItemBase>();
+            foreach(var dir in fileTreeService.GetDirectories(Path))
+            {
+                temp.Add(new Directory { Name = dir ,Path=Path+dir});
+            }
+            return temp;
         }
         #endregion
 

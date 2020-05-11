@@ -11,10 +11,11 @@ namespace MiniTC.ViewModel
     internal class MainViewModel : BaseViewModel
     {
         #region Properties
-        private static readonly Model.MiniTC miniTC = new Model.MiniTC();
+        private static readonly Model.FileTreeService fileOperationService = new Model.FileTreeService();
+        private static readonly Model.FileTreeService fileTreeService = new Model.FileTreeService();
 
-        private TCPanelViewModel leftPanel = new TCPanelViewModel(miniTC);
-        private TCPanelViewModel rightPanel = new TCPanelViewModel(miniTC);
+        private TCPanelViewModel leftPanel = new TCPanelViewModel(fileTreeService);
+        private TCPanelViewModel rightPanel = new TCPanelViewModel(fileTreeService);
 
         public TCPanelViewModel LeftPanel
         {

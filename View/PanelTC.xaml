@@ -15,8 +15,8 @@
             <RowDefinition Height="6*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-            <TextBlock x:Name="pathLabel" x:FieldModifier="private" Width="50" FontSize="13" Height="20"
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right" Margin="0,0,20,0">
+            <TextBlock x:Name="pathLabel" x:FieldModifier="private" Width="50" FontSize="13" Height="23"
                        Margin="10,10,0,10"
                       TextAlignment="Justify" 
                  Text="{
@@ -30,7 +30,7 @@
                      }"  />
 
             <TextBox x:Name="pathBox" x:FieldModifier="private" TextChanged="Path_TextChanged" 
-                     Height="20" FontSize="13" Width="170" BorderThickness="1" BorderBrush="Black"
+                     Height="23" FontSize="13" Width="200" BorderThickness="1" BorderBrush="Black"
                      Margin="10,10,10,10"
                      Text="{
                         Binding Path=Path,
@@ -43,8 +43,8 @@
                      }"/>
 
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
-            <TextBlock x:Name="driveLabel" x:FieldModifier="private" Width="50" Height="20" FontSize="13"
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,20,0">
+            <TextBlock x:Name="driveLabel" x:FieldModifier="private" Width="50" Height="23" FontSize="13"
                        Margin="10,10,0,10"
                       TextAlignment="Justify"
                  Text="{
@@ -59,7 +59,7 @@
             
         <ComboBox x:Name="driveBox" x:FieldModifier="private"
                  SelectionChanged="driveBox_SelectionChanged"
-                 Height="20" FontSize="13" Width="50" BorderThickness="1" BorderBrush="Black"
+                 Height="23" FontSize="13" Width="50" BorderThickness="1" BorderBrush="Black"
                  Margin="10,10,10,10"
                   SelectedItem="{Binding Path=SelectedDrive,
                         Mode=TwoWay,
@@ -80,7 +80,7 @@
                      }" />
         </StackPanel>
         <ListBox x:Name="contentsList" x:FieldModifier="private" Grid.Row="2"
-                SelectionChanged="Contents_SelectionChanged"
+                SelectionChanged="Contents_SelectionChanged" FontSize="12"
                  Margin="15,20,15,15"
                  SelectedItem="{Binding Path=SelectedContent,
                         Mode=TwoWay,

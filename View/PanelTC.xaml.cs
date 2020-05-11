@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MiniTC.View
@@ -66,7 +68,7 @@ namespace MiniTC.View
         public static readonly DependencyProperty DriveProperty =
             DependencyProperty.Register(
                 "Drives",
-                typeof(string),
+                typeof(BindingList<String>),
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
@@ -122,7 +124,7 @@ namespace MiniTC.View
         public static readonly DependencyProperty FileSelectionProperty =
             DependencyProperty.Register(
                 "SelectedFile",
-                typeof(string),
+                typeof(ViewModel.FileInfo.ListItemBase),
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
@@ -149,7 +151,7 @@ namespace MiniTC.View
         public static readonly DependencyProperty ContentsProperty =
             DependencyProperty.Register(
                 "Contents",
-                typeof(string),
+                typeof(BindingList<ViewModel.FileInfo.ListItemBase>),
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
@@ -175,9 +177,9 @@ namespace MiniTC.View
             get { return (string)GetValue(PathProperty); }
             set { SetValue(PathProperty, value); }
         }
-        public string[] Drives
+        public BindingList<String> Drives
         {
-            get { return (string[])GetValue(DriveProperty); }
+            get { return (BindingList<String>)GetValue(DriveProperty); }
             set { SetValue(DriveProperty, value); }
         }
         public string SelectedDrive
@@ -185,14 +187,14 @@ namespace MiniTC.View
             get { return (string)GetValue(SelectedDriveProperty); }
             set { SetValue(SelectedDriveProperty, value); }
         }
-        public string SelectedFile
+        public ViewModel.FileInfo.ListItemBase SelectedFile
         {
-            get { return (string)GetValue(FileSelectionProperty); }
+            get { return (ViewModel.FileInfo.ListItemBase)GetValue(FileSelectionProperty); }
             set { SetValue(FileSelectionProperty, value); }
         }
-        public string[] Contents
+        public BindingList<ViewModel.FileInfo.ListItemBase> Contents
         {
-            get { return (string[])GetValue(ContentsProperty); }
+            get { return (BindingList<ViewModel.FileInfo.ListItemBase>)GetValue(ContentsProperty); }
             set { SetValue(ContentsProperty, value); }
         }
 

@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace MiniTC.Model.Commands
 {
-    class Copy : ICommand
+    class Run : ICommand
     {
-        public string Name { get;}="Copy";
+        public string Name => throw new NotImplementedException();
 
         public bool Execute(string sourcePath, string targetPath)
         {
             throw new NotImplementedException();
         }
-
-
-        
     }
 }

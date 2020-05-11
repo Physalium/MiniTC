@@ -57,8 +57,14 @@
     </ApplicationDefinition>
     <Compile Include="Model\Commands\Copy.cs" />
     <Compile Include="Model\Commands\ICommand.cs" />
-    <Compile Include="Model\MiniTC.cs" />
+    <Compile Include="Model\Commands\Open.cs" />
+    <Compile Include="Model\Commands\Run.cs" />
+    <Compile Include="Model\FileTreeService.cs" />
+    <Compile Include="Model\FileOperationService.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\ListItems\Directory.cs" />
+    <Compile Include="ViewModel\ListItems\File.cs" />
+    <Compile Include="ViewModel\ListItems\ListItemBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\TCPanelViewModel.cs" />
     <Compile Include="View\PanelTC.xaml.cs">
