@@ -21,8 +21,13 @@ namespace MiniTC.Model
             }
             public string[] GetFiles(string path)
             {
-                return Directory.GetFiles(path);
+            var files = Directory.GetDirectories(path);
+            for (int i = 0; i < files.Length; i++)
+            {
+                files[i] = files[i].Substring(files[i].LastIndexOf(Path.DirectorySeparatorChar) + 1);
             }
+            return files;
+        }
  
     }
 }
