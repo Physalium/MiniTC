@@ -64,6 +64,7 @@
     <Compile Include="Model\FileOperationService.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
     <Compile Include="ViewModel\FileTreeCommands\OpenDir.cs" />
+    <Compile Include="ViewModel\FileTreeCommands\RunFile.cs" />
     <Compile Include="ViewModel\ListItems\DirItem.cs" />
     <Compile Include="ViewModel\ListItems\FileItem.cs" />
     <Compile Include="ViewModel\ListItems\ListItemBase.cs" />

@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
-using MiniTC.Model;
-using MiniTC.Model.Commands;
-using MiniTC.Properties;
+
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
 using MiniTC.ViewModel.FileTreeCommands;
@@ -17,11 +9,14 @@ using MiniTC.ViewModel.ListItems;
 namespace MiniTC.ViewModel
 {
     using R = Properties.Resources;
+
     internal class TCPanelViewModel : BaseViewModel
     {
         private readonly Model.FileTreeService fileTreeService;
         private readonly Model.FileOperationService fileOperationService;
+
         #region Properties
+
         private string path;
 
         public string Path
@@ -46,7 +41,6 @@ namespace MiniTC.ViewModel
             }
         }
 
-
         private BindingList<String> drives;
 
         public BindingList<String> Drives
@@ -70,6 +64,7 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(Contents));
             }
         }
+
         private ListItemBase selectedItem;
 
         public ListItemBase SelectedItem
@@ -81,7 +76,9 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(SelectedItem));
             }
         }
+
         #region Labels
+
         private String pathLabel;
 
         public String PathLabel
@@ -92,6 +89,7 @@ namespace MiniTC.ViewModel
                 pathLabel = value;
             }
         }
+
         private String driveLabel;
 
         public String DriveLabel
@@ -102,10 +100,13 @@ namespace MiniTC.ViewModel
                 driveLabel = value;
             }
         }
-        #endregion
 
-        #endregion
+        #endregion Labels
+
+        #endregion Properties
+
         #region Constructor
+
         internal TCPanelViewModel(Model.FileTreeService treeService)
         {
             fileTreeService = treeService;
@@ -115,9 +116,11 @@ namespace MiniTC.ViewModel
             Path = Drives[0];
             RefreshPanel();
         }
-        #endregion
+
+        #endregion Constructor
 
         #region Methods
+
         public void FileEnter(object sender, System.EventArgs e)
         {
             SelectedItem.Command.Execute(this);
@@ -128,6 +131,14 @@ namespace MiniTC.ViewModel
             // walidacja tutaj
             RefreshPanel();
         }
+
+        public void DriveChanged(object sender, System.EventArgs e)
+        {
+            Path = SelectedDrive;
+            // walidacja tutaj
+            RefreshPanel();
+        }
+
         public void RefreshPanel()
         {
             SelectedDrive = Path.Substring(0, Path.IndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
@@ -141,26 +152,34 @@ namespace MiniTC.ViewModel
             if (SelectedDrive != Path)
             {
                 var parentdir = fileTreeService.GetParentDir(this.Path);
-                fileTree.Add(new ParentDirItem { Name = R.ParentDir,
+                fileTree.Add(new ParentDirItem
+                {
+                    Name = R.ParentDir,
                     Path = parentdir,
-                    Command = OpenDir.Open});
-
+                    Command = OpenDir.Open
+                });
             }
             foreach (var dir in fileTreeService.GetDirectories(Path))
             {
-                fileTree.Add(new DirItem { Name = dir,
-                    Path = Path + dir,
-                Command=OpenDir.Open});
+                fileTree.Add(new DirItem
+                {
+                    Name = dir,
+                    Path = Path + System.IO.Path.DirectorySeparatorChar + dir,
+                    Command = OpenDir.Open
+                });
             }
             foreach (var dir in fileTreeService.GetFiles(Path))
             {
-                fileTree.Add(new FileItem { Name = dir, Path = Path + dir });
+                fileTree.Add(new FileItem
+                {
+                    Name = dir,
+                    Path = Path + System.IO.Path.DirectorySeparatorChar + dir,
+                    Command = RunFile.Run
+                });
             }
             return fileTree;
         }
-        #endregion
 
-
-
+        #endregion Methods
     }
 }

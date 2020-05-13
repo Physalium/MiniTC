@@ -10,7 +10,7 @@ namespace MiniTC.ViewModel.Base
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
 
-        #endregion
+        #endregion Private fields
 
         #region Constructor
 
@@ -21,7 +21,7 @@ namespace MiniTC.ViewModel.Base
             _canExecute = canExecute;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Contents
 
@@ -47,6 +47,6 @@ namespace MiniTC.ViewModel.Base
             _execute(parameter);
         }
 
-        #endregion
+        #endregion Contents
     }
 }

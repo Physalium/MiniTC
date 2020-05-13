@@ -8,17 +8,18 @@ namespace MiniTC.View
     /// <summary>
     /// Interaction logic for PanelTC.xaml
     /// </summary>
-    /// 
+    ///
     public partial class PanelTC : UserControl
     {
         public PanelTC()
         {
             InitializeComponent();
-
         }
+
         #region Events
 
         #region Path
+
         public static readonly RoutedEvent PathChangedEvent =
         EventManager.RegisterRoutedEvent("PathChanged",
                      RoutingStrategy.Bubble, typeof(RoutedEventHandler),
@@ -56,10 +57,10 @@ namespace MiniTC.View
                 new FrameworkPropertyMetadata(null)
             );
 
-
-        #endregion
+        #endregion Path
 
         #region Drive
+
         public static readonly RoutedEvent DriveChangedEvent =
         EventManager.RegisterRoutedEvent("DriveChanged",
                      RoutingStrategy.Bubble, typeof(RoutedEventHandler),
@@ -111,11 +112,13 @@ namespace MiniTC.View
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
-        #endregion
+
+        #endregion Drive
 
         #region FileTree
 
         #region FileSelection
+
         public static readonly RoutedEvent FileSelectionChangedEvent =
        EventManager.RegisterRoutedEvent("FileSelectionChanged",
                     RoutingStrategy.Bubble, typeof(RoutedEventHandler),
@@ -160,8 +163,10 @@ namespace MiniTC.View
             RaiseEvent(newEventArgs);
         }
 
-        #endregion
+        #endregion FileSelection
+
         #region Contents
+
         public static readonly RoutedEvent ContentsChangedEvent =
       EventManager.RegisterRoutedEvent("ContentsChanged",
                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
@@ -187,43 +192,49 @@ namespace MiniTC.View
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
-        #endregion
 
-        #endregion
+        #endregion Contents
+
+        #endregion FileTree
 
         #region Labels
+
         protected static readonly DependencyProperty PathLabelProperty =
             DependencyProperty.Register("PathLabel", typeof(string), typeof(PanelTC));
+
         protected static readonly DependencyProperty DriveLabelProperty =
             DependencyProperty.Register("DriveLabel", typeof(string), typeof(PanelTC));
 
+        #endregion Labels
 
-
-        #endregion
-
-        #endregion
+        #endregion Events
 
         #region Dependency props
+
         public string Path
         {
             get { return (string)GetValue(PathProperty); }
             set { SetValue(PathProperty, value); }
         }
+
         public BindingList<String> Drives
         {
             get { return (BindingList<String>)GetValue(DriveProperty); }
             set { SetValue(DriveProperty, value); }
         }
+
         public string SelectedDrive
         {
             get { return (string)GetValue(SelectedDriveProperty); }
             set { SetValue(SelectedDriveProperty, value); }
         }
+
         public ViewModel.FileInfo.ListItemBase SelectedFile
         {
             get { return (ViewModel.FileInfo.ListItemBase)GetValue(FileSelectionProperty); }
             set { SetValue(FileSelectionProperty, value); }
         }
+
         public BindingList<ViewModel.FileInfo.ListItemBase> Contents
         {
             get { return (BindingList<ViewModel.FileInfo.ListItemBase>)GetValue(ContentsProperty); }
@@ -235,26 +246,27 @@ namespace MiniTC.View
             get { return (string)GetValue(PathLabelProperty); }
             set { SetValue(PathLabelProperty, value); }
         }
+
         public string DriveLabel
         {
             get { return (string)GetValue(DriveLabelProperty); }
             set { SetValue(DriveLabelProperty, value); }
         }
-        #endregion
+
+        #endregion Dependency props
 
         #region Internal event handlers
-
 
         private void driveBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RaiseSelectedDriveChanged();
         }
+
         private void pathBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == System.Windows.Input.Key.Enter)
             {
                 RaisePathChanged();
-
             }
         }
 
@@ -265,11 +277,12 @@ namespace MiniTC.View
 
         private void contentsList_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key==System.Windows.Input.Key.Enter)
+            if (e.Key == System.Windows.Input.Key.Enter)
             {
                 RaiseFileEnter();
             }
         }
-        #endregion
+
+        #endregion Internal event handlers
     }
 }

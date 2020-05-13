@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Documents;
+
 using MiniTC.Model.Commands;
 
 namespace MiniTC.Model
@@ -18,7 +17,6 @@ namespace MiniTC.Model
             }
         }
 
-
         public bool ExecuteOperationByName(string name, string sourcePath, string targetPath)
         {
             foreach (var cmd in Commands)
@@ -32,6 +30,5 @@ namespace MiniTC.Model
         {
             return command.Execute(sourcePath, targetPath);
         }
-
     }
 }

@@ -4,7 +4,6 @@ namespace MiniTC.Model
 {
     internal class FileTreeService
     {
-
         public string[] GetDrives()
         {
             return Directory.GetLogicalDrives();
@@ -19,15 +18,17 @@ namespace MiniTC.Model
             }
             return dirs;
         }
+
         public string[] GetFiles(string path)
         {
-            var files = Directory.GetDirectories(path);
+            var files = Directory.GetFiles(path);
             for (int i = 0; i < files.Length; i++)
             {
                 files[i] = files[i].Substring(files[i].LastIndexOf(Path.DirectorySeparatorChar) + 1);
             }
             return files;
         }
+
         public string GetParentDir(string path)
         {
             var dir = new DirectoryInfo(path);
@@ -35,6 +36,5 @@ namespace MiniTC.Model
             string v = rootDir.FullName.ToString();
             return v;
         }
-
     }
 }
