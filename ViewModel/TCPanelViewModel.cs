@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
+using MiniTC.Model;
 using MiniTC.Properties;
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
+using MiniTC.ViewModel.ListItems;
 
 namespace MiniTC.ViewModel
 {
@@ -32,7 +36,9 @@ namespace MiniTC.ViewModel
         public string SelectedDrive
         {
             get { return selectedDrive; }
-            set { selectedDrive = value;
+            set
+            {
+                selectedDrive = value;
                 onPropertyChanged(nameof(SelectedDrive));
             }
         }
@@ -103,28 +109,46 @@ namespace MiniTC.ViewModel
             DriveLabel = R.DriveLabel;
             PathLabel = R.PathLabel;
             Drives = new BindingList<string>(fileTreeService.GetDrives());
-            RefreshPanel(Drives[0]);
+            Path = Drives[0];
+            RefreshPanel();
         }
         #endregion
 
         #region Methods
-        public void RefreshPanel(string currentPath)
+
+        public void PathEnterPress(object sender, System.EventArgs e)
         {
-            SelectedDrive = Drives[0]; // do implementacji
-            Path = currentPath;
+            // walidacja tutaj
+            RefreshPanel();
+        }
+        public void RefreshPanel()
+        {
+            SelectedDrive = Path.Substring(0, Path.IndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
+            SelectedItem = null;
             Contents = BuildFileTree();
         }
 
         public BindingList<ListItemBase> BuildFileTree()
         {
-            var temp = new BindingList<ListItemBase>();
-            foreach(var dir in fileTreeService.GetDirectories(Path))
+            var fileTree = new BindingList<ListItemBase>();
+            if (SelectedDrive != Path)
             {
-                temp.Add(new Directory { Name = dir ,Path=Path+dir});
+                fileTree.Add(new ParentDirItem { Name = "...", Path = fileTreeService.GetParentDir(Path) });
+
             }
-            return temp;
+            foreach (var dir in fileTreeService.GetDirectories(Path))
+            {
+                fileTree.Add(new DirItem { Name = dir, Path = Path + dir });
+            }
+            foreach (var dir in fileTreeService.GetFiles(Path))
+            {
+                fileTree.Add(new FileItem { Name = dir, Path = Path + dir });
+            }
+            return fileTree;
         }
         #endregion
+
+
 
     }
 }

@@ -26,5 +26,7 @@ namespace MiniTC
             InitializeComponent();
             this.DataContext = new MainViewModel();
         }
+
+      
     }
 }

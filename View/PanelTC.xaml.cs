@@ -30,6 +30,17 @@ namespace MiniTC.View
             remove { RemoveHandler(PathChangedEvent, value); }
         }
 
+        public static readonly RoutedEvent PathEnterEvent =
+       EventManager.RegisterRoutedEvent("PathEnter",
+                    RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                    typeof(PanelTC));
+
+        public event RoutedEventHandler PathEnter
+        {
+            add { AddHandler(PathChangedEvent, value); }
+            remove { RemoveHandler(PathChangedEvent, value); }
+        }
+
         private void RaisePathChanged()
         {
             RoutedEventArgs newEventArgs =
@@ -44,6 +55,8 @@ namespace MiniTC.View
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
+
+
         #endregion
 
         #region Drive
@@ -128,6 +141,25 @@ namespace MiniTC.View
                 typeof(PanelTC),
                 new FrameworkPropertyMetadata(null)
             );
+
+        public static readonly RoutedEvent FileEnterEvent =
+   EventManager.RegisterRoutedEvent("FileEnter",
+                RoutingStrategy.Bubble, typeof(RoutedEventHandler),
+                typeof(PanelTC));
+
+        public event RoutedEventHandler FileEnter
+        {
+            add { AddHandler(FileEnterEvent, value); }
+            remove { RemoveHandler(FileEnterEvent, value); }
+        }
+
+        private void RaiseFileEnter()
+        {
+            RoutedEventArgs newEventArgs =
+                    new RoutedEventArgs(FileEnterEvent);
+            RaiseEvent(newEventArgs);
+        }
+
         #endregion
         #region Contents
         public static readonly RoutedEvent ContentsChangedEvent =
@@ -212,21 +244,31 @@ namespace MiniTC.View
 
         #region Internal event handlers
 
-        private void Path_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RaisePathChanged();
-        }
-
-
-        private void Contents_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            RaiseContentsChanged();
-        }
-
 
         private void driveBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             RaiseSelectedDriveChanged();
+        }
+        private void pathBox_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+            {
+                RaisePathChanged();
+
+            }
+        }
+
+        private void contentsList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            RaiseFileEnter();
+        }
+
+        private void contentsList_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key==System.Windows.Input.Key.Enter)
+            {
+                RaiseFileEnter();
+            }
         }
         #endregion
     }

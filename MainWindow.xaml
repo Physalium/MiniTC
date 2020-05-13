@@ -7,9 +7,11 @@
         xmlns:resx="clr-namespace:MiniTC.Properties" 
         xmlns:vm="clr-namespace:MiniTC.ViewModel"
         xmlns:view="clr-namespace:MiniTC.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MiniTC" Height="600" Width="800"
+        Title="MiniTC" Height="700" Width="800"
         Background="LightGray">
+
 
 
     <Grid>
@@ -18,20 +20,46 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <view:PanelTC x:Name="leftPanel" DriveLabel="{Binding Path=LeftPanel.DriveLabel}"
-                      PathLabel="{Binding Path=LeftPanel.PathLabel}"
-                      Drives="{Binding Path=LeftPanel.Drives}"
-                      SelectedDrive="{Binding Path=LeftPanel.SelectedDrive,Mode=TwoWay}"
-                      Contents="{Binding Path=LeftPanel.Contents}"
-                      Grid.Column="0"/>
-        
-        <view:PanelTC x:Name="rightPanel" PathLabel="{Binding Path=RightPanel.PathLabel}"
-                      DriveLabel="{Binding Path=RightPanel.DriveLabel}"
-                      Drives="{Binding Path=RightPanel.Drives}"
-                      Contents="{Binding Path=RightPanel.Contents}"
-                      SelectedDrive="{Binding Path=RightPanel.SelectedDrive,Mode=TwoWay}"
-                      Grid.Column="1"/>
+        <view:PanelTC x:Name="leftPanel" DataContext="{Binding Path=LeftPanel}"
+                      DriveLabel="{Binding Path=DriveLabel}"
+                      PathLabel="{Binding Path=PathLabel}"
+                      Drives="{Binding Path=Drives}"
+                      Path="{Binding Path=Path,Mode=TwoWay}"
+                      SelectedDrive="{Binding Path=SelectedDrive,Mode=TwoWay}"
+                      Contents="{Binding Path=Contents}"
+                      SelectedFile="{Binding Path=SelectedItem,Mode=TwoWay}"
+                      Grid.Column="0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PathEnter">
+                    <i:CallMethodAction MethodName="PathEnterPress"
+                    TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
+                        Path=DataContext}"/>
+                </i:EventTrigger>
+                
+                <i:EventTrigger EventName="FileEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}}, Path=SelectedItem.Open}" PassEventArgsToCommand="True" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </view:PanelTC>
+
+        <view:PanelTC x:Name="rightPanel" DataContext="{Binding Path=RightPanel}" 
+                      PathLabel="{Binding Path=PathLabel}"
+                      DriveLabel="{Binding Path=DriveLabel}"
+                      Drives="{Binding Path=Drives}"
+                      Path="{Binding Path=Path,Mode=TwoWay}"
+                      Contents="{Binding Path=Contents}"
+                      SelectedDrive="{Binding Path=SelectedDrive,Mode=TwoWay}"
+                      SelectedFile="{Binding Path=SelectedItem,Mode=TwoWay}"
+                      Grid.Column="1">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PathEnter">
+                    <i:CallMethodAction MethodName="PathEnterPress"
+                    TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
+                        Path=DataContext}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </view:PanelTC>
 
     </Grid>
-    
+
 </Window>

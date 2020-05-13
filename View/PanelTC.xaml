@@ -29,9 +29,10 @@
                                        }
                      }"  />
 
-            <TextBox x:Name="pathBox" x:FieldModifier="private" TextChanged="Path_TextChanged" 
+            <TextBox x:Name="pathBox" x:FieldModifier="private" 
                      Height="23" FontSize="13" Width="200" BorderThickness="1" BorderBrush="Black"
                      Margin="10,10,10,10"
+                     PreviewKeyDown="pathBox_PreviewKeyDown"
                      Text="{
                         Binding Path=Path,
                         Mode=TwoWay,
@@ -79,10 +80,11 @@
                                        }
                      }" />
         </StackPanel>
-        <ListBox x:Name="contentsList" x:FieldModifier="private" Grid.Row="2"
-                SelectionChanged="Contents_SelectionChanged" FontSize="12"
-                 Margin="15,20,15,15"
-                 SelectedItem="{Binding Path=SelectedContent,
+        <ListBox x:Name="contentsList" x:FieldModifier="private" Grid.Row="2" 
+                 FontSize="12" Margin="15,20,15,15"
+                 MouseDoubleClick="contentsList_MouseDoubleClick"
+                 PreviewKeyDown="contentsList_PreviewKeyDown"
+                 SelectedItem="{Binding Path=SelectedFile,
                         Mode=TwoWay,
                         UpdateSourceTrigger=PropertyChanged,
                         RelativeSource={
