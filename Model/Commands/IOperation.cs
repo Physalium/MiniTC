@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniTC.Model.Commands
 {
-    public interface ICommand
+    public interface IOperation
     {
         string Name { get; }
         bool Execute(string sourcePath, string targetPath);

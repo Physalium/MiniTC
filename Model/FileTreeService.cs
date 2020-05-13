@@ -31,7 +31,9 @@ namespace MiniTC.Model
         public string GetParentDir(string path)
         {
             var dir = new DirectoryInfo(path);
-            return dir.Parent.ToString();
+            var rootDir = dir.Parent;
+            string v = rootDir.FullName.ToString();
+            return v;
         }
 
     }

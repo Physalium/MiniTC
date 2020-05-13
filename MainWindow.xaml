@@ -37,7 +37,9 @@
                 </i:EventTrigger>
                 
                 <i:EventTrigger EventName="FileEnter">
-                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}}, Path=SelectedItem.Open}" PassEventArgsToCommand="True" />
+                    <i:CallMethodAction MethodName="FileEnter"
+                    TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
+                        Path=DataContext}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </view:PanelTC>

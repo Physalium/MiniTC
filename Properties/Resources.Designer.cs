@@ -61,11 +61,29 @@ namespace MiniTC.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;D&gt;.
+        /// </summary>
+        internal static string DirPrefix {
+            get {
+                return ResourceManager.GetString("DirPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drive:.
         /// </summary>
         internal static string DriveLabel {
             get {
                 return ResourceManager.GetString("DriveLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ....
+        /// </summary>
+        internal static string ParentDir {
+            get {
+                return ResourceManager.GetString("ParentDir", resourceCulture);
             }
         }
         

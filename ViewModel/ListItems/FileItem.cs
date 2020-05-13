@@ -11,15 +11,6 @@ namespace MiniTC.ViewModel.FileInfo
     class FileItem : ListItemBase
     {
        
-        private ICommand open;
-        public override ICommand Open
-        {
-            get
-            {
-                return open ?? (open = new Model.Commands.Run());
-            }
-        }
-
         public override string ToString()
         {
             return Name;

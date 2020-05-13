@@ -11,21 +11,10 @@ namespace MiniTC.ViewModel.FileInfo
 {
     class DirItem : ListItemBase
     {
-       
-
-        private ICommand open;
-        public override ICommand Open
-        {
-            get
-            {
-                return open ?? (open = new Model.Commands.Open());
-            }
-            
-        }
 
         public override string ToString()
         {
-            return $"<D> {Name}";
+            return MiniTC.Properties.Resources.DirPrefix+$" {Name}";
         }
     }
 }

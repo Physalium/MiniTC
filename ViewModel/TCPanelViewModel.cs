@@ -7,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Shapes;
 using MiniTC.Model;
+using MiniTC.Model.Commands;
 using MiniTC.Properties;
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
+using MiniTC.ViewModel.FileTreeCommands;
 using MiniTC.ViewModel.ListItems;
 
 namespace MiniTC.ViewModel
@@ -18,6 +20,7 @@ namespace MiniTC.ViewModel
     internal class TCPanelViewModel : BaseViewModel
     {
         private readonly Model.FileTreeService fileTreeService;
+        private readonly Model.FileOperationService fileOperationService;
         #region Properties
         private string path;
 
@@ -103,9 +106,9 @@ namespace MiniTC.ViewModel
 
         #endregion
         #region Constructor
-        internal TCPanelViewModel(Model.FileTreeService modelInstance)
+        internal TCPanelViewModel(Model.FileTreeService treeService)
         {
-            fileTreeService = modelInstance;
+            fileTreeService = treeService;
             DriveLabel = R.DriveLabel;
             PathLabel = R.PathLabel;
             Drives = new BindingList<string>(fileTreeService.GetDrives());
@@ -115,6 +118,10 @@ namespace MiniTC.ViewModel
         #endregion
 
         #region Methods
+        public void FileEnter(object sender, System.EventArgs e)
+        {
+            SelectedItem.Command.Execute(this);
+        }
 
         public void PathEnterPress(object sender, System.EventArgs e)
         {
@@ -124,8 +131,8 @@ namespace MiniTC.ViewModel
         public void RefreshPanel()
         {
             SelectedDrive = Path.Substring(0, Path.IndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
-            SelectedItem = null;
             Contents = BuildFileTree();
+            SelectedItem = Contents[0];
         }
 
         public BindingList<ListItemBase> BuildFileTree()
@@ -133,12 +140,17 @@ namespace MiniTC.ViewModel
             var fileTree = new BindingList<ListItemBase>();
             if (SelectedDrive != Path)
             {
-                fileTree.Add(new ParentDirItem { Name = "...", Path = fileTreeService.GetParentDir(Path) });
+                var parentdir = fileTreeService.GetParentDir(this.Path);
+                fileTree.Add(new ParentDirItem { Name = R.ParentDir,
+                    Path = parentdir,
+                    Command = OpenDir.Open});
 
             }
             foreach (var dir in fileTreeService.GetDirectories(Path))
             {
-                fileTree.Add(new DirItem { Name = dir, Path = Path + dir });
+                fileTree.Add(new DirItem { Name = dir,
+                    Path = Path + dir,
+                Command=OpenDir.Open});
             }
             foreach (var dir in fileTreeService.GetFiles(Path))
             {

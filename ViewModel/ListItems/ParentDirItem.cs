@@ -8,17 +8,8 @@ using MiniTC.ViewModel.FileInfo;
 
 namespace MiniTC.ViewModel.ListItems
 {
-    class ParentDirItem: ListItemBase
+    class ParentDirItem : ListItemBase
     {
-
-        private ICommand open;
-        public override ICommand Open
-        {
-            get
-            {
-                return open ?? (open = new Model.Commands.Open());
-            }
-        }
 
         public override string ToString()
         {

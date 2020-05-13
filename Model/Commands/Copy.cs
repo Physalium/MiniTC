@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MiniTC.Model.Commands
 {
-    class Copy : ICommand
+    class Copy : IOperation
     {
         public string Name { get;}="Copy";
 

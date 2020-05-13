@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MiniTC.Model;
+using MiniTC.Model.Commands;
 using MiniTC.ViewModel.Base;
 
 namespace MiniTC.ViewModel
@@ -11,7 +12,7 @@ namespace MiniTC.ViewModel
     internal class MainViewModel : BaseViewModel
     {
         #region Properties
-        private static readonly Model.FileTreeService fileOperationService = new Model.FileTreeService();
+        private static readonly Model.FileOperationService fileOperationService = new Model.FileOperationService();
         private static readonly Model.FileTreeService fileTreeService = new Model.FileTreeService();
 
         private TCPanelViewModel leftPanel = new TCPanelViewModel(fileTreeService);
@@ -26,6 +27,11 @@ namespace MiniTC.ViewModel
         {
             get { return rightPanel; }
 
+        }
+
+        public MainViewModel()
+        {
+            fileOperationService.AddCommand(new Copy());
         }
 
 

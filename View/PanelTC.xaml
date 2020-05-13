@@ -31,7 +31,7 @@
 
             <TextBox x:Name="pathBox" x:FieldModifier="private" 
                      Height="23" FontSize="13" Width="200" BorderThickness="1" BorderBrush="Black"
-                     Margin="10,10,10,10"
+                     Margin="10,10,10,10" IsTabStop="False"
                      PreviewKeyDown="pathBox_PreviewKeyDown"
                      Text="{
                         Binding Path=Path,
@@ -61,7 +61,7 @@
         <ComboBox x:Name="driveBox" x:FieldModifier="private"
                  SelectionChanged="driveBox_SelectionChanged"
                  Height="23" FontSize="13" Width="50" BorderThickness="1" BorderBrush="Black"
-                 Margin="10,10,10,10"
+                 Margin="10,10,10,10" IsTabStop="False"
                   SelectedItem="{Binding Path=SelectedDrive,
                         Mode=TwoWay,
                         UpdateSourceTrigger=PropertyChanged,

@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using MiniTC.Model.Commands;
 using MiniTC.ViewModel.Base;
 
 namespace MiniTC.ViewModel.FileInfo
 {
-    public abstract class ListItemBase : BaseViewModel
+    public class ListItemBase : BaseViewModel
     {
 
         private string name;
@@ -33,8 +34,12 @@ namespace MiniTC.ViewModel.FileInfo
                 onPropertyChanged(nameof(Path));
             }
         }
+        private ICommand command;
+        public ICommand Command
+        {
+            get { return command; }
+            set { command = (RelayCommand)value; onPropertyChanged(nameof(Command)); }
 
-        abstract public ICommand Open { get; }
-
+        }
     }
 }

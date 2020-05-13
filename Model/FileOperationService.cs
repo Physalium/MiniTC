@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Documents;
 using MiniTC.Model.Commands;
 
@@ -7,9 +8,9 @@ namespace MiniTC.Model
 {
     internal class FileOperationService
     {
-        public List<ICommand> Commands;
+        public List<IOperation> Commands = new List<IOperation>();
 
-        public void AddCommand(ICommand command)
+        public void AddCommand(IOperation command)
         {
             if (!Commands.Contains(command))
             {
@@ -27,7 +28,7 @@ namespace MiniTC.Model
             throw new Exception("There is no command with this name.");
         }
 
-        public bool Execute(ICommand command, string sourcePath, string targetPath)
+        public bool Execute(IOperation command, string sourcePath, string targetPath)
         {
             return command.Execute(sourcePath, targetPath);
         }
