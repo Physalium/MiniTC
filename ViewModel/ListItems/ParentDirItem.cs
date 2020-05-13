@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MiniTC.Model.Commands;
-using MiniTC.ViewModel.Base;
+using MiniTC.ViewModel.FileInfo;
 
-namespace MiniTC.ViewModel.FileInfo
+namespace MiniTC.ViewModel.ListItems
 {
-    class File : ListItemBase
+    class ParentDirItem: ListItemBase
     {
-       
+
         private ICommand open;
-        internal override ICommand Open
+        public override ICommand Open
         {
             get
             {
-                return open ?? (open = new Model.Commands.Run());
+                return open ?? (open = new Model.Commands.Open());
             }
         }
 

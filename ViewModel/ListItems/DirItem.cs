@@ -9,17 +9,18 @@ using MiniTC.ViewModel.Base;
 
 namespace MiniTC.ViewModel.FileInfo
 {
-    class Directory : ListItemBase
+    class DirItem : ListItemBase
     {
        
 
         private ICommand open;
-        internal override ICommand Open
+        public override ICommand Open
         {
             get
             {
                 return open ?? (open = new Model.Commands.Open());
             }
+            
         }
 
         public override string ToString()

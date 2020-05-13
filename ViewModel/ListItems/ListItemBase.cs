@@ -34,7 +34,7 @@ namespace MiniTC.ViewModel.FileInfo
             }
         }
 
-        abstract internal ICommand Open { get; }
+        abstract public ICommand Open { get; }
 
     }
 }
