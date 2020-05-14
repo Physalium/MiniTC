@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-
+using MiniTC.View;
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
 using MiniTC.ViewModel.FileTreeCommands;
@@ -13,8 +13,7 @@ namespace MiniTC.ViewModel
     internal class TCPanelViewModel : BaseViewModel
     {
         private readonly Model.FileTreeService fileTreeService;
-        private readonly Model.FileOperationService fileOperationService;
-
+        private readonly MainViewModel main;
         #region Properties
 
         private string path;
@@ -74,6 +73,7 @@ namespace MiniTC.ViewModel
             {
                 selectedItem = value;
                 onPropertyChanged(nameof(SelectedItem));
+
             }
         }
 
@@ -107,8 +107,9 @@ namespace MiniTC.ViewModel
 
         #region Constructor
 
-        internal TCPanelViewModel(Model.FileTreeService treeService)
+        internal TCPanelViewModel(Model.FileTreeService treeService, MainViewModel mainViewModel)
         {
+            main = mainViewModel;
             fileTreeService = treeService;
             DriveLabel = R.DriveLabel;
             PathLabel = R.PathLabel;
@@ -120,6 +121,10 @@ namespace MiniTC.ViewModel
         #endregion Constructor
 
         #region Methods
+        public void switchActivePanel(object sender, System.EventArgs e)
+        {
+            main.ActivePanel = this;
+        }
 
         public void FileEnter(object sender, System.EventArgs e)
         {

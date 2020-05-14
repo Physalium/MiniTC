@@ -17,18 +17,18 @@ namespace MiniTC.Model
             }
         }
 
-        public bool ExecuteOperationByName(string name, string sourcePath, string targetPath)
+        public void ExecuteOperationByName(string name, string sourcePath, string targetPath)
         {
             foreach (var cmd in Commands)
             {
-                if (cmd.Name == name) return Execute(cmd, sourcePath, targetPath);
+                if (cmd.Name == name) { Execute(cmd, sourcePath, targetPath); return; }
             }
             throw new Exception("There is no command with this name.");
         }
 
-        public bool Execute(IOperation command, string sourcePath, string targetPath)
+        public void Execute(IOperation command, string sourcePath, string targetPath)
         {
-            return command.Execute(sourcePath, targetPath);
+            command.Execute(sourcePath, targetPath);
         }
     }
 }

@@ -4,6 +4,6 @@
     {
         string Name { get; }
 
-        bool Execute(string sourcePath, string targetPath);
+        void Execute(string sourcePath, string targetPath);
     }
 }

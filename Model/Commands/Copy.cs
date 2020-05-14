@@ -6,9 +6,9 @@ namespace MiniTC.Model.Commands
     {
         public string Name { get; } = "Copy";
 
-        public bool Execute(string sourcePath, string targetPath)
+        public void Execute(string sourcePath, string targetPath)
         {
-            throw new NotImplementedException();
+            System.IO.Directory.Move(sourcePath,targetPath); ;
         }
     }
 }
