@@ -17,6 +17,15 @@ namespace MiniTC.Model
             }
         }
 
+        public bool canExecuteOperationByName(string name, string sourcePath, string targetPath)
+        {
+            foreach (var cmd in Commands)
+            {
+                if (cmd.Name == name) { return canExecute(cmd, sourcePath, targetPath); }
+            }
+            throw new Exception("There is no command with this name.");
+        }
+
         public void ExecuteOperationByName(string name, string sourcePath, string targetPath)
         {
             foreach (var cmd in Commands)
@@ -28,7 +37,19 @@ namespace MiniTC.Model
 
         public void Execute(IOperation command, string sourcePath, string targetPath)
         {
-            command.Execute(sourcePath, targetPath);
+            try
+            {
+                command.Execute(sourcePath, targetPath);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        public bool canExecute(IOperation command, string sourcePath, string targetPath)
+        {
+            return command.canExecute(sourcePath, targetPath);
         }
     }
 }

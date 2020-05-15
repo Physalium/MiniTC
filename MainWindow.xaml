@@ -98,7 +98,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Copy" Command="{Binding Path=Copy}" Width="150" BorderBrush="Black" Background="White"/>
+            <Button Content="Copy" Command="{Binding Path=Copy}" FontSize="23" Width="150" BorderThickness="2" BorderBrush="Black" Foreground="Black" Background="Wheat"/>
         </StackPanel>
     </Grid>
 </Window>

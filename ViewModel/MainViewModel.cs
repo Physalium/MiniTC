@@ -27,6 +27,9 @@ namespace MiniTC.ViewModel
             {
                 activePanel = value;
                 onPropertyChanged(nameof(ActivePanel));
+                TCPanelViewModel nonActive = (LeftPanel == ActivePanel) ? RightPanel : LeftPanel;
+                nonActive.SelectedItem = null;
+
             }
         }
         public TCPanelViewModel RightPanel
@@ -40,23 +43,29 @@ namespace MiniTC.ViewModel
 
             get
             {
-                if (true)
+                
+                if (copy == null)
                 {
                     TCPanelViewModel nonActive = (LeftPanel == ActivePanel) ? RightPanel : LeftPanel;
                     copy = new RelayCommand(
                         execute =>
                         {
+                            System.Console.WriteLine(ActivePanel.Path);
                             fileOperationService.ExecuteOperationByName("Copy",
                             ActivePanel.SelectedItem.Path, nonActive.Path);
+                            LeftPanel.RefreshPanel();
+                            RightPanel.RefreshPanel();
                         },
-                        canExecute => (activePanel.SelectedItem != null && ActivePanel.SelectedItem.Dir!=nonActive.Path)
-                     );
+                        canExecute =>
+                        {
+                            return fileOperationService.canExecuteOperationByName("Copy",
+                                ActivePanel.SelectedItem.Path, nonActive.Path);
+                        });
                 }
-
                 return copy;
-
             }
             set => copy = value;
+
         }
 
 

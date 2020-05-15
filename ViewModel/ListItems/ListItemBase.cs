@@ -41,6 +41,5 @@ namespace MiniTC.ViewModel.FileInfo
             set { command = (RelayCommand)value; onPropertyChanged(nameof(Command)); }
         }
 
-        public string Dir { get => this.Path.Except(Name).ToString(); }
     }
 }

@@ -282,7 +282,9 @@ namespace MiniTC.View
                 RaiseFileEnter();
             }
         }
+       
 
         #endregion Internal event handlers
+
     }
 }
