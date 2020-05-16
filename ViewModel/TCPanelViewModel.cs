@@ -1,10 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.SqlClient;
 using System.IO;
-using System.Windows.Media;
-using System.Windows.Navigation;
-using MiniTC.View;
+
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
 using MiniTC.ViewModel.FileTreeCommands;
@@ -18,6 +15,7 @@ namespace MiniTC.ViewModel
     {
         internal readonly Model.FileTreeService fileTreeService;
         internal readonly MainViewModel main;
+
         #region Properties
 
         private string path;
@@ -77,7 +75,6 @@ namespace MiniTC.ViewModel
             {
                 selectedItem = value;
                 onPropertyChanged(nameof(SelectedItem));
-
             }
         }
 
@@ -125,15 +122,15 @@ namespace MiniTC.ViewModel
         #endregion Constructor
 
         #region Methods
+
         public void switchActivePanel(object sender, System.EventArgs e)
         {
-            Console.WriteLine(sender.ToString());
             main.ActivePanel = this;
         }
 
         public void FileEnter(object sender, System.EventArgs e)
         {
-            if (SelectedItem!=null)
+            if (SelectedItem != null)
             {
                 SelectedItem.Command.Execute(this);
             }

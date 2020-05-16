@@ -4,7 +4,6 @@ namespace MiniTC.ViewModel.FileTreeCommands
 {
     internal static class OpenDir
     {
-
         private static void open(object param)
         {
             TCPanelViewModel vm = param as TCPanelViewModel;
@@ -13,7 +12,6 @@ namespace MiniTC.ViewModel.FileTreeCommands
                 vm.Path = vm.SelectedItem.Path;
                 vm.RefreshPanel();
             }
-          
         }
 
         public static RelayCommand Open

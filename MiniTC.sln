@@ -5,14 +5,6 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniTC", "MiniTC.csproj", "{EAD62549-57F8-48E1-B5CC-F2910BB7FBBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Okna dialogowe", "..\..\..\OknaDialogowePrzyklady\OknaDialogowePrzyklady\Okna dialogowe\Okna dialogowe\Okna dialogowe.csproj", "{7530F3AD-29FE-4B5E-BA17-C75B3010D26D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menu", "..\..\..\Menu\Menu\Menu.csproj", "{10C87802-890A-43E4-BB92-709D344F0131}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-Form", "..\PiłkarzeMVVM\WPF-Form.csproj", "{9B9FA9B9-C640-47CE-BA38-0375F05BEB6C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorMVVM", "..\..\..\kaluklator z poleceniami\CalculatorMVVM\CalculatorMVVM\CalculatorMVVM.csproj", "{577F7ED0-5C94-4678-B1F2-D8F2F0A61D71}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,22 +15,6 @@ Global
 		{EAD62549-57F8-48E1-B5CC-F2910BB7FBBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAD62549-57F8-48E1-B5CC-F2910BB7FBBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAD62549-57F8-48E1-B5CC-F2910BB7FBBD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7530F3AD-29FE-4B5E-BA17-C75B3010D26D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7530F3AD-29FE-4B5E-BA17-C75B3010D26D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7530F3AD-29FE-4B5E-BA17-C75B3010D26D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7530F3AD-29FE-4B5E-BA17-C75B3010D26D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10C87802-890A-43E4-BB92-709D344F0131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10C87802-890A-43E4-BB92-709D344F0131}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10C87802-890A-43E4-BB92-709D344F0131}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10C87802-890A-43E4-BB92-709D344F0131}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B9FA9B9-C640-47CE-BA38-0375F05BEB6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B9FA9B9-C640-47CE-BA38-0375F05BEB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B9FA9B9-C640-47CE-BA38-0375F05BEB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B9FA9B9-C640-47CE-BA38-0375F05BEB6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{577F7ED0-5C94-4678-B1F2-D8F2F0A61D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{577F7ED0-5C94-4678-B1F2-D8F2F0A61D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{577F7ED0-5C94-4678-B1F2-D8F2F0A61D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{577F7ED0-5C94-4678-B1F2-D8F2F0A61D71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

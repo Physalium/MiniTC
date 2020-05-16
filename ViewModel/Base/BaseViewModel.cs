@@ -5,7 +5,7 @@ namespace MiniTC.ViewModel.Base
     public class BaseViewModel : INotifyPropertyChanged
     {
         /// <summary>
-        /// Zdarzenie uruchamiane, gdy dowolna właściwość zmienia swoją wartość
+        /// Event that is raised when the property is changed.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 

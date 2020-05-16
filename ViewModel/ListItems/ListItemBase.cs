@@ -1,7 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using MiniTC.ViewModel.Base;
 
@@ -40,6 +37,5 @@ namespace MiniTC.ViewModel.FileInfo
             get { return command; }
             set { command = (RelayCommand)value; onPropertyChanged(nameof(Command)); }
         }
-
     }
 }

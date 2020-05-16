@@ -49,7 +49,6 @@ namespace MiniTC.Model
             }
             catch (System.UnauthorizedAccessException)
             {
-
                 return false;
             }
             return true;

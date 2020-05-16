@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace MiniTC.Model.Commands
 {
@@ -17,15 +16,17 @@ namespace MiniTC.Model.Commands
 
         public void Execute(string sourcePath, string targetPath)
         {
-
             if (File.Exists(sourcePath))
             {
                 var info = new FileInfo(sourcePath);
 
-                File.Copy(sourcePath, targetPath + Path.DirectorySeparatorChar + info.Name); 
+                File.Copy(sourcePath, targetPath + Path.DirectorySeparatorChar + info.Name);
             }
-            if (Directory.Exists(sourcePath)) DirectoryCopy(sourcePath, targetPath, true);
-
+            if (Directory.Exists(sourcePath))
+            {
+                var info = new DirectoryInfo(sourcePath);
+                DirectoryCopy(sourcePath, targetPath + Path.DirectorySeparatorChar + info.Name, true);
+            }
         }
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
@@ -65,6 +66,5 @@ namespace MiniTC.Model.Commands
                 }
             }
         }
-
     }
 }

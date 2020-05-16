@@ -6,7 +6,6 @@ namespace MiniTC.ViewModel.FileTreeCommands
 {
     internal static class RunFile
     {
-     
         private static void run(object param)
         {
             TCPanelViewModel vm = param as TCPanelViewModel;

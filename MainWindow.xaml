@@ -10,14 +10,13 @@
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MiniTC" Height="700" Width="800"
-        Background="LightGray"
-        >
+        Background="LightGray">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"  >
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -31,8 +30,7 @@
                       SelectedDrive="{Binding Path=SelectedDrive,Mode=TwoWay}"
                       Contents="{Binding Path=Contents}"
                       SelectedFile="{Binding Path=SelectedItem,Mode=TwoWay}"
-                      Grid.Column="0"
-                      >
+                      Grid.Column="0">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PathEnter" SourceObject="{Binding ElementName=leftPanel}">
                         <i:CallMethodAction MethodName="PathEnterPress"
@@ -51,7 +49,7 @@
                         Path=DataContext}" />
                     </i:EventTrigger>
 
-                    <i:EventTrigger EventName="GotFocus" SourceObject="{Binding ElementName=leftPanel}" >
+                    <i:EventTrigger EventName="GotFocus" SourceObject="{Binding ElementName=leftPanel}">
                         <i:CallMethodAction MethodName="switchActivePanel"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
@@ -67,8 +65,7 @@
                       SelectedDrive="{Binding Path=SelectedDrive,Mode=TwoWay}"
                       Contents="{Binding Path=Contents}"
                       SelectedFile="{Binding Path=SelectedItem,Mode=TwoWay}"
-                      Grid.Column="1"
-                      >
+                      Grid.Column="1">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="PathEnter"  SourceObject="{Binding ElementName=rightPanel}">
                         <i:CallMethodAction MethodName="PathEnterPress"
@@ -97,7 +94,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <Button Content="Copy" Command="{Binding Path=Copy}" FontSize="23" Width="150" BorderThickness="2" BorderBrush="Black" Foreground="Black" Background="Wheat"/>
+            <Button Content="Copy" Command="{Binding Path=Copy}" FontSize="23" Width="150" BorderThickness="2" BorderBrush="Black" Foreground="Black" Background="Wheat" />
         </StackPanel>
     </Grid>
 </Window>
