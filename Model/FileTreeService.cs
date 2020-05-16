@@ -36,5 +36,23 @@ namespace MiniTC.Model
             string v = rootDir.FullName.ToString();
             return v;
         }
+
+        public bool isAccesible(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                return false;
+            }
+            try
+            {
+                Directory.GetFiles(path);
+            }
+            catch (System.UnauthorizedAccessException)
+            {
+
+                return false;
+            }
+            return true;
+        }
     }
 }

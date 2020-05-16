@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using MiniTC.Model.Commands;
 using MiniTC.View;
 using MiniTC.ViewModel.Base;
@@ -9,8 +10,8 @@ namespace MiniTC.ViewModel
     {
         #region Properties
 
-        private static readonly Model.FileOperationService fileOperationService = new Model.FileOperationService();
-        private static readonly Model.FileTreeService fileTreeService = new Model.FileTreeService();
+        internal static readonly Model.FileOperationService fileOperationService = new Model.FileOperationService();
+        internal static readonly Model.FileTreeService fileTreeService = new Model.FileTreeService();
 
         private TCPanelViewModel leftPanel;
         private TCPanelViewModel rightPanel;
@@ -27,8 +28,26 @@ namespace MiniTC.ViewModel
             {
                 activePanel = value;
                 onPropertyChanged(nameof(ActivePanel));
-                TCPanelViewModel nonActive = (LeftPanel == ActivePanel) ? RightPanel : LeftPanel;
-                nonActive.SelectedItem = null;
+                if (leftPanel==activePanel)
+                {
+                    NotActivePanel = rightPanel;
+                }
+                if (rightPanel == activePanel)
+                {
+                    NotActivePanel = leftPanel;
+                }
+
+            }
+        }
+
+        private TCPanelViewModel notActivePanel;
+        internal TCPanelViewModel NotActivePanel
+        {
+            get => notActivePanel; set
+            {
+                notActivePanel = value;
+                onPropertyChanged(nameof(NotActivePanel));
+               
 
             }
         }
@@ -46,20 +65,20 @@ namespace MiniTC.ViewModel
                 
                 if (copy == null)
                 {
-                    TCPanelViewModel nonActive = (LeftPanel == ActivePanel) ? RightPanel : LeftPanel;
                     copy = new RelayCommand(
                         execute =>
                         {
                             System.Console.WriteLine(ActivePanel.Path);
                             fileOperationService.ExecuteOperationByName("Copy",
-                            ActivePanel.SelectedItem.Path, nonActive.Path);
+                            ActivePanel.SelectedItem.Path, NotActivePanel.Path);
                             LeftPanel.RefreshPanel();
                             RightPanel.RefreshPanel();
                         },
                         canExecute =>
                         {
+                            if (ActivePanel.SelectedItem is null) return false;
                             return fileOperationService.canExecuteOperationByName("Copy",
-                                ActivePanel.SelectedItem.Path, nonActive.Path);
+                                ActivePanel.SelectedItem.Path, NotActivePanel.Path);
                         });
                 }
                 return copy;
@@ -81,7 +100,8 @@ namespace MiniTC.ViewModel
             fileOperationService.AddCommand(new Copy());
             leftPanel = new TCPanelViewModel(fileTreeService, this);
             rightPanel = new TCPanelViewModel(fileTreeService, this);
-            activePanel = leftPanel;
+            ActivePanel = leftPanel;
+            NotActivePanel = rightPanel;
         }
         #endregion
 

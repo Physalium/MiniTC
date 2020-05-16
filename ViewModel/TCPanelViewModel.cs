@@ -1,5 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data.SqlClient;
+using System.IO;
+using System.Windows.Media;
+using System.Windows.Navigation;
 using MiniTC.View;
 using MiniTC.ViewModel.Base;
 using MiniTC.ViewModel.FileInfo;
@@ -12,8 +16,8 @@ namespace MiniTC.ViewModel
 
     internal class TCPanelViewModel : BaseViewModel
     {
-        private readonly Model.FileTreeService fileTreeService;
-        private readonly MainViewModel main;
+        internal readonly Model.FileTreeService fileTreeService;
+        internal readonly MainViewModel main;
         #region Properties
 
         private string path;
@@ -123,17 +127,21 @@ namespace MiniTC.ViewModel
         #region Methods
         public void switchActivePanel(object sender, System.EventArgs e)
         {
+            Console.WriteLine(sender.ToString());
             main.ActivePanel = this;
         }
 
         public void FileEnter(object sender, System.EventArgs e)
         {
-            SelectedItem.Command.Execute(this);
+            if (SelectedItem!=null)
+            {
+                SelectedItem.Command.Execute(this);
+            }
         }
 
         public void PathEnterPress(object sender, System.EventArgs e)
         {
-            // walidacja tutaj
+            if (!Directory.Exists(Path)) return;
             RefreshPanel();
         }
 
@@ -149,6 +157,7 @@ namespace MiniTC.ViewModel
             SelectedDrive = Path.Substring(0, Path.IndexOf(System.IO.Path.DirectorySeparatorChar) + 1);
             Contents = BuildFileTree();
             SelectedItem = Contents[0];
+            SelectedItem = null;
         }
 
         public BindingList<ListItemBase> BuildFileTree()

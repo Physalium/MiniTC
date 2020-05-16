@@ -17,8 +17,13 @@ namespace MiniTC.Model.Commands
 
         public void Execute(string sourcePath, string targetPath)
         {
-           
-            if (File.Exists(sourcePath)) File.Copy(sourcePath, targetPath);
+
+            if (File.Exists(sourcePath))
+            {
+                var info = new FileInfo(sourcePath);
+
+                File.Copy(sourcePath, targetPath + Path.DirectorySeparatorChar + info.Name); 
+            }
             if (Directory.Exists(sourcePath)) DirectoryCopy(sourcePath, targetPath, true);
 
         }

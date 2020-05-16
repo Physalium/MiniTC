@@ -8,8 +8,12 @@ namespace MiniTC.ViewModel.FileTreeCommands
         private static void open(object param)
         {
             TCPanelViewModel vm = param as TCPanelViewModel;
-            vm.Path = vm.SelectedItem.Path;
-            vm.RefreshPanel();
+            if (vm.fileTreeService.isAccesible(vm.SelectedItem.Path))
+            {
+                vm.Path = vm.SelectedItem.Path;
+                vm.RefreshPanel();
+            }
+          
         }
 
         public static RelayCommand Open

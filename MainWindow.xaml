@@ -34,25 +34,24 @@
                       Grid.Column="0"
                       >
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PathEnter">
+                    <i:EventTrigger EventName="PathEnter" SourceObject="{Binding ElementName=leftPanel}">
                         <i:CallMethodAction MethodName="PathEnterPress"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
 
-                    <i:EventTrigger EventName="SelectedDriveChanged">
+                    <i:EventTrigger EventName="SelectedDriveChanged" SourceObject="{Binding ElementName=leftPanel}">
                         <i:CallMethodAction MethodName="DriveChanged"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
-
-                    <i:EventTrigger EventName="FileEnter">
+                    <i:EventTrigger EventName="FileEnter" SourceObject="{Binding ElementName=leftPanel}">
                         <i:CallMethodAction MethodName="FileEnter"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
 
-                    <i:EventTrigger EventName="GotFocus">
+                    <i:EventTrigger EventName="GotFocus" SourceObject="{Binding ElementName=leftPanel}" >
                         <i:CallMethodAction MethodName="switchActivePanel"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
@@ -61,34 +60,34 @@
             </view:PanelTC>
 
             <view:PanelTC x:Name="rightPanel" DataContext="{Binding Path=RightPanel}"
-                      PathLabel="{Binding Path=PathLabel}"
                       DriveLabel="{Binding Path=DriveLabel}"
+                      PathLabel="{Binding Path=PathLabel}"
                       Drives="{Binding Path=Drives}"
                       Path="{Binding Path=Path,Mode=TwoWay}"
-                      Contents="{Binding Path=Contents}"
                       SelectedDrive="{Binding Path=SelectedDrive,Mode=TwoWay}"
+                      Contents="{Binding Path=Contents}"
                       SelectedFile="{Binding Path=SelectedItem,Mode=TwoWay}"
                       Grid.Column="1"
                       >
                 <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="PathEnter">
+                    <i:EventTrigger EventName="PathEnter"  SourceObject="{Binding ElementName=rightPanel}">
                         <i:CallMethodAction MethodName="PathEnterPress"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
 
-                    <i:EventTrigger EventName="SelectedDriveChanged">
+                    <i:EventTrigger EventName="SelectedDriveChanged" SourceObject="{Binding ElementName=rightPanel}">
                         <i:CallMethodAction MethodName="DriveChanged"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
-                    <i:EventTrigger EventName="FileEnter">
+                    <i:EventTrigger EventName="FileEnter" SourceObject="{Binding ElementName=rightPanel}">
                         <i:CallMethodAction MethodName="FileEnter"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
                     </i:EventTrigger>
 
-                    <i:EventTrigger EventName="GotFocus">
+                    <i:EventTrigger EventName="GotFocus" SourceObject="{Binding ElementName=rightPanel}">
                         <i:CallMethodAction MethodName="switchActivePanel"
                     TargetObject="{Binding RelativeSource={RelativeSource AncestorType={x:Type view:PanelTC}},
                         Path=DataContext}" />
